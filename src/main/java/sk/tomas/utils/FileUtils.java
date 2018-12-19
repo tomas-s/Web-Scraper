@@ -22,8 +22,8 @@ public class FileUtils {
 
     public void writeToCsv() {
         log.info("Start writing to csv");
-        try (FileWriter csvWriter = new FileWriter(category + ".csv")) {
-            writeCsvLine(csvWriter, Arrays.asList("kod","name","category","price without wat"));
+        try (FileWriter csvWriter = new FileWriter("csv/" + category + ".csv")) {
+            writeCsvLine(csvWriter, Arrays.asList("kod", "name", "category", "price without wat"));
             for (Item item : items) {
                 List<String> values = Arrays.asList(item.getId(), item.getName(), item.getCategory(), item.getPriceWithoutWat());
                 writeCsvLine(csvWriter, values);
@@ -33,10 +33,10 @@ public class FileUtils {
             log.error(e.getMessage());
         }
     }
-
+//TODO: odstranit directory json, lebo to spadne kedtam nebude vytvoreny adresar
     public void writeToJson() {
         log.info("Start writing to json");
-        try (FileWriter fileWriter = new FileWriter(category + ".json")) {
+        try (FileWriter fileWriter = new FileWriter("json/" + category + ".json")) {
             String newLine = System.getProperty("line.separator");
             for (Item item : items) {
                 fileWriter.write(item + newLine);

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        final String CATEGORY_TO_LOAD = "kancelarsky_nabytok";
+        final String CATEGORY_TO_LOAD = "test";
 
         final ArrayList<Item> finalProducList = new ArrayList<>();
         Loader loader = new Loader(CATEGORY_TO_LOAD);

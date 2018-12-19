@@ -23,6 +23,8 @@ public class SubCategory {
     private final String PRICE_WITH_WAT_XPATH = ".//span[@class=\"list-products__item__bottom__info-box__prices__with-wat\"]";
     private final String PRICE_WITHOUT_WAT_XPATH = ".//strong[@class=\"list-products__item__bottom__info-box__prices__without-wat\"]";
     private final String CATEGORY_XPATH = "//span[@class=\"box-breadcrumb__item__last\"]";
+    private final String PARAM_XPATH = ".//div[@class=\"list-products__item__bottom__params__table__cell\"]";
+
 
     public SubCategory(String categoryUrl, WebClient client) {
         this.categoryUrl = categoryUrl;
@@ -65,6 +67,11 @@ public class SubCategory {
             HtmlElement name = item.getFirstByXPath(NAME_XPATH);
             HtmlElement priceWithWat = item.getFirstByXPath(PRICE_WITH_WAT_XPATH);
             HtmlElement priceWithoutWat = item.getFirstByXPath(PRICE_WITHOUT_WAT_XPATH);
+            List<HtmlElement> param = (List<HtmlElement>) item.getFirstByXPath(PARAM_XPATH);
+            for (HtmlElement htmlElement : param) {
+                final String s = htmlElement.asText();
+                System.out.println(s);
+            }
             Item itemToAdd = new Item(id != null ? id.getFirstChild().asText() : "", name != null ? name.getFirstChild().asText() : "", priceWithWat != null ? priceWithWat.getFirstChild().asText() : "", priceWithoutWat != null ? priceWithoutWat.getFirstChild().asText() : "", category != null ? category : "");
             pruductList.add(itemToAdd);
         }
